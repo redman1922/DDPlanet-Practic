@@ -1,12 +1,28 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
-export const productApi = createApi({
-        reducerPath: 'api/products',
-        baseQuery: fetchBaseQuery({ baseUrl: 'https://fakestoreapi.com/' }),
-        endpoints: (builder) => ({
-            getProducts: builder.query({
-            query: (limit = 5) => `products?limit=${limit}`}),
+export const apiSlice = createApi({
+    reducerPath: 'api',
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'http://localhost:3001/auth',
+        mode: 'no-cors',
+        prepareHeaders: (headers) => {
+            // If we have a token set in state, let's assume that we should be passing it.
+            // headers.set('Authorization', 'Bearer MY_TOKEN');
+            headers.set('Content-Type', 'application/json');
+            return headers;
+        },
     }),
+    endpoints: builder => ({
+        addNewPost: builder.mutation({
+            query: initialPost => ({
+                url: '/login',
+                method: 'POST',
+                // Include the entire post object as the body of the request
+                body: initialPost,
+            })
+        })
     })
-export const { useGetProductsQuery } = productApi
+})
+
+
+export const {useAddNewPostMutation} = apiSlice;

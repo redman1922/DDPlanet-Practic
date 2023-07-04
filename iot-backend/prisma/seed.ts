@@ -6,7 +6,7 @@ const userData: Prisma.UserCreateInput[] = [
   {
     name: 'Anna',
     username: 'anna',
-    password: 'anna',
+    password: 'annaa',
     devices: {
       create: [
         {
