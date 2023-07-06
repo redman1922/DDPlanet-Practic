@@ -50,3 +50,4 @@ const SensorsItem = () => {
     );
 };
 
+export default SensorsItem;
