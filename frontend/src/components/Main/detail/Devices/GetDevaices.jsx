@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import ChangeDevices from "./ChangeDevices";
 import {useGetSensorsQuery} from "../../../../features/authSlice";
+import {useNavigate} from "react-router-dom";
+import classes from "./helpForMain.module.css";
 
 const GetDevaices = ({result}) => {
 
@@ -9,7 +11,11 @@ const GetDevaices = ({result}) => {
         data = []
     } = useGetSensorsQuery(result.id);
 
-    console.log(data)
+    const navigate = useNavigate();
+
+    const viewSensorsItem = (deviceId,id) => {
+        navigate(`/devices/${deviceId}/sensors/${id}`, )
+    }
 
     return (
         <>
@@ -46,14 +52,7 @@ const GetDevaices = ({result}) => {
                 </div>
                 <div style={{margin: '0 auto'}}>
                     {data.map((result) => (
-                        <div style={{
-                            margin: '30px 0',
-                            textAlign: 'center',
-                            border: '1px solid black',
-                            borderRadius: '8px',
-                            boxSizing: 'border-box',
-                            padding: '15px'
-                        }}>
+                        <div className={classes.sensorsItem} onClick={() => viewSensorsItem(result.deviceId,result.id)}>
                             <div>{result.name}</div>
                             <div>{result.comment}</div>
                         </div>

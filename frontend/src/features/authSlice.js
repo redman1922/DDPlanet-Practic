@@ -17,6 +17,7 @@ export const authSlice = createApi({
             return headers;
         },
     }),
+    tagTypes:['Goods','Sensors'],
     endpoints: builder => ({
         getAuthorization: builder.mutation({
             query: initialPost => ({
@@ -30,20 +31,38 @@ export const authSlice = createApi({
             query: () => ({
                 url: '/devices',
                 method: 'GET',
-            })
+            }),
+            providesTags:['Goods']
         }),
         getSensors: builder.query({
             query: (id) => ({
                 url: `/devices/${id}/sensors`,
                 method: 'GET',
-            })
+            }),
+            providesTags:['Goods','Sensors']
+        }),
+        getSensorsItem: builder.query({
+            query: ({devicesId, id}) => ({
+                url: `/devices/${devicesId}/sensors/${id}`,
+                method: 'GET',
+            }),
+            providesTags:['Sensors']
         }),
         putDevices: builder.mutation({
-            query: ({id, ...patch}) => ({
+            query: ({id, ...body}) => ({
                 url: `/devices/${id}`,
                 method: 'PUT',
-                body: {...patch.changeDeviesForm},
+                body: {...body.changeDeviesForm},
             }),
+            invalidatesTags:['Goods']
+        }),
+        changeSensors: builder.mutation({
+            query: ({id,...body}) => ({
+                url: `/sensors/${id}`,
+                method: 'PATCH',
+                body:{...body.valueForm}
+            }),
+            invalidatesTags:['Sensors']
         }),
     })
 })
@@ -51,5 +70,6 @@ export const authSlice = createApi({
 
 export const {
     useGetAuthorizationMutation, useGetDevicesQuery
-    , usePutDevicesMutation, useGetSensorsQuery
+    , usePutDevicesMutation, useGetSensorsQuery,
+    useGetSensorsItemQuery, useChangeSensorsMutation
 } = authSlice;

@@ -11,18 +11,17 @@ const Main = () => {
     const token = useSelector(state => state.reducer.token.token);
     const navigate = useNavigate();
 
-    const {
-        data: devices = [],
-        isFetching,
-        isLoading,
-    } = useGetDevicesQuery( );
-
-
     useEffect(() => {
         if (!token) {
             navigate('/')
         }
     }, [token])
+
+    const {
+        data: devices = [],
+        isFetching,
+        isLoading,
+    } = useGetDevicesQuery( );
 
     return (
         <div style={{
