@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import ChangeDevices from "./ChangeDevices";
 import {useGetSensorsQuery} from "../../../../features/authSlice";
 import {useNavigate} from "react-router-dom";
-import classes from "./helpForMain.module.css";
+import classes from "../stylesForDetails.module.css";
 
 const GetDevaices = ({result}) => {
 
@@ -12,6 +12,13 @@ const GetDevaices = ({result}) => {
     } = useGetSensorsQuery(result.id);
 
     const navigate = useNavigate();
+    const savedToken = localStorage.getItem('rtkToken');
+
+    useEffect(()=>{
+        if (!savedToken) {
+            navigate('/')
+        }
+    },[savedToken])
 
     const viewSensorsItem = (deviceId,id) => {
         navigate(`/devices/${deviceId}/sensors/${id}`, )
@@ -19,15 +26,8 @@ const GetDevaices = ({result}) => {
 
     return (
         <>
-            <div style={{
-                display: "flex",
-                alignItems: 'center',
-                maxWidth: '1100px', width: '100%'
-            }}>
-                <div style={{
-                    maxWidth: '500px', width: '100%', boxSizing: 'border-box',
-                    padding: '0 20px'
-                }}>
+            <div className={classes.wrapperForDevices}>
+                <div className={classes.marginForDevices}>
                     {flag
                         ? <ChangeDevices result={result} setFlag={setFlag}/>
                         : <div>
@@ -39,12 +39,7 @@ const GetDevaices = ({result}) => {
                             </div>
                             <div style={{textAlign: 'right'}}>
                                 <button onClick={() => setFlag(true)}
-                                        style={{
-                                            boxSizing: 'border-box',
-                                            padding: '12px',
-                                            borderRadius: '20px',
-                                            margin: '10px 0 0 0',
-                                        }}>Изменить
+                                        className={classes.buttonDevices}>Изменить
                                 </button>
                             </div>
                         </div>

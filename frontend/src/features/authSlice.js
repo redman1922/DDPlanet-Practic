@@ -6,10 +6,10 @@ export const authSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:3001',
         mode: 'cors',
-        prepareHeaders: (headers, {getState}) => {
-            const states = getState();
-            if (states.reducer.token.token) {
-                headers.set('Authorization', `Bearer ${states.reducer.token.token}`);
+        prepareHeaders: (headers) => {
+            const token = localStorage.getItem('rtkToken');
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
             }
             // If we have a token set in state, let's assume that we should be passing it.
             // headers.set('Authorization', 'Bearer MY_TOKEN');
@@ -48,7 +48,7 @@ export const authSlice = createApi({
             }),
             providesTags:['Sensors']
         }),
-        putDevices: builder.mutation({
+        changeDevices: builder.mutation({
             query: ({id, ...body}) => ({
                 url: `/devices/${id}`,
                 method: 'PUT',
@@ -62,13 +62,13 @@ export const authSlice = createApi({
                 method: 'PATCH',
                 body:{...body.valueForm}
             }),
-            invalidatesTags:['Sensors']
+            invalidatesTags: ['Sensors']
         }),
     })
 })
 
 export const {
     useGetAuthorizationMutation, useGetDevicesQuery
-    , usePutDevicesMutation, useGetSensorsQuery,
+    , useChangeDevicesMutation, useGetSensorsQuery,
     useGetSensorsItemQuery, useChangeSensorsMutation
 } = authSlice;

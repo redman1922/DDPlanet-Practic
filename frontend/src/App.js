@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
 import Login from "./components/Login/Login";
 import Main from "./components/Main/Main";
-import SensorsItem from "./components/Main/detail/Devices/SensorsItem";
+import SensorsItem from "./components/Main/detail/Sensors/SensorsItem";
 
 const App = () => {
 

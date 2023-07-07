@@ -1,9 +1,10 @@
 import {useState} from "react";
-import {usePutDevicesMutation} from "../../../../features/authSlice";
+import {useChangeDevicesMutation} from "../../../../features/authSlice";
+import classes from "../stylesForDetails.module.css";
 
 const ChangeDevices = ({result, setFlag}) => {
 
-    const [data, {isLoading}] = usePutDevicesMutation();
+    const [data, {isLoading}] = useChangeDevicesMutation();
 
     const [changeDeviesForm, setChangeDeviesForm] = useState({
         name: result.name,
@@ -24,34 +25,16 @@ const ChangeDevices = ({result, setFlag}) => {
     return (
         <form onSubmit={changeDevicesData}>
             <h3>Имя устройства:</h3>
-            <input style={{
-                maxWidth: '500px',
-                margin: '15px 0',
-                width: '100%',
-                height: '28px',
-                boxSizing: 'border-box',
-                padding: '5px',
-                borderRadius: '10px'
-            }} onChange={e => setChangeDeviesForm({...changeDeviesForm, name: e.target.value})}
+            <input className={classes.inputDevices} onChange={e => setChangeDeviesForm({...changeDeviesForm, name: e.target.value})}
                    placeholder='Введите имя' value={changeDeviesForm.name}></input>
             <div style={{marginBottom: '15px'}}>
                 <h3 style={{marginBottom: '13px'}}>Комментарий:</h3>
-                <input style={{
-                    maxWidth: '500px',
-                    width: '100%',
-                    height: '28px',
-                    boxSizing: 'border-box',
-                    padding: '5px',
-                    borderRadius: '10px'
-                }} onChange={e => setChangeDeviesForm({...changeDeviesForm, comment: e.target.value})}
+                <input className={classes.inputDevices} onChange={e => setChangeDeviesForm({...changeDeviesForm, comment: e.target.value})}
                        value={changeDeviesForm.comment} placeholder='Введите комментарий'></input>
             </div>
             <div style={{textAlign: 'right'}}>
-                <button type='submit'
+                <button className={classes.buttonDevices} type='submit'
                         style={{
-                            boxSizing: 'border-box',
-                            padding: '12px',
-                            borderRadius: '20px',
                             margin: '0 30px 0 0'
                         }}>Добавить
                 </button>

@@ -4,27 +4,12 @@ import {useEffect, useState} from "react";
 import {useGetDevicesQuery} from "../../features/authSlice";
 import GetDevaices from "./detail/Devices/GetDevaices";
 import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
-
-
-const cities = [
-    {
-        coords: [59.93863, 30.31413]
-    },
-    {
-        coords: [55.630527, 37.849046]
-    },
-    {
-        coords: [55.753559, 37.609218]
-    },
-    {
-        coords: [55.753559, 37.609218]
-    },
-];
+import classes from "./Main.module.css";
 
 const Main = () => {
 
-    const token = useSelector(state => state.reducer.token.token);
     const navigate = useNavigate();
+    const savedToken = localStorage.getItem('rtkToken');
 
     const {
         data: devices = [],
@@ -33,37 +18,28 @@ const Main = () => {
         isLoading,
     } = useGetDevicesQuery();
 
-    useEffect(() => {
-        if (!token || isError) {
+    useEffect(()=>{
+        if (!savedToken) {
             navigate('/')
         }
-    }, [token])
+    },[savedToken])
+
+    const outLogin = () => {
+        localStorage.removeItem('rtkToken');
+        navigate('/');
+    }
 
     return (
-        <div style={{
-            maxWidth: '1900px',
-            width: '100%',
-            margin: '0 auto',
-            display: 'flex',
-            boxSizing: 'border-box',
-            padding: '50px 0 0',
-        }}>
-            <div style={{
-                display: "flex", flexDirection: 'column', maxWidth: '1100px',
-                width: '100%', margin: '0 auto'
-            }}>
+        <div className={classes.wrapperMain}>
+            <div className={classes.positionBlocksForMain}>
+                <div style={{textAlign:'right',margin:'0 0 20px'}}>
+                    <button onClick={outLogin} style={{boxSizing:'border-box',padding:'5px 10px',borderRadius:'10px'}}>Выйти</button>
+                </div>
                 {isLoading
                     ? <h1>...Загрузка</h1>
                     : <>
-                        <div style={{
-                            background: '#ededed',
-                            boxSizing: 'border-box',
-                            padding: '20px',
-                            borderRadius: '10px',
-                            marginBottom: '20px'
-                        }}>
+                        <div className={classes.wrapperForContent}>
                             { devices.map((result) => (<div key={result.id} >
-                                {console.log([result.latitude,result.longitude])}
                                 <GetDevaices result={result}/>
                                 <YMaps>
                                     <Map width={'100%'} defaultState={{ center: [result.latitude,result.longitude], zoom: 9 }}>

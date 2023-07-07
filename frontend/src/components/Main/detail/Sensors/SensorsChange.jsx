@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {useChangeSensorsMutation} from "../../../../features/authSlice";
+import classes from "../stylesForDetails.module.css";
 
 const SensorsChange = ({data, setFlag}) => {
 
@@ -22,30 +23,13 @@ const SensorsChange = ({data, setFlag}) => {
 
     return (
         <form onSubmit={changeSensorsData} style={{display:'flex',flexDirection:'column', maxWidth:'400px', margin:'0 auto'}} >
-            <input style={{
-                textAlign:'center',
-                maxWidth: '400px',
-                margin: '15px 0 7px',
-                width: '100%',
-                height: '28px',
-                boxSizing: 'border-box',
-                padding: '5px',
-                borderRadius: '10px'
-            }} onChange={(e) => setValueForm({...valueForm, name: e.target.value})}
+            <input className={classes.inputSensors} onChange={(e) => setValueForm({...valueForm, name: e.target.value})}
                    value={valueForm.name}
                    type="text"/>
-            <input style={{
-                textAlign:'center',
-                maxWidth: '400px',
-                width: '100%',
-                height: '28px',
-                boxSizing: 'border-box',
-                padding: '5px',
-                borderRadius: '10px'
-            }} onChange={(e) => setValueForm({...valueForm, comment: e.target.value})}
+            <input className={classes.inputSensors} style={{margin:'0'}} onChange={(e) => setValueForm({...valueForm, comment: e.target.value})}
                    value={valueForm.comment}
                    type="text"/>
-            <button style={{padding:'5px',boxSizing:'border-box',borderRadius:'10px',margin:'5px auto 0',maxWidth:'200px', width:'100%'}}>Исправить</button>
+            <button className={classes.buttonSensors}>Исправить</button>
         </form>
     );
 };

@@ -1,0 +1,110 @@
+.sensorsItem {
+    margin: 30px 0;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 8px;
+    box-sizing: border-box;
+    padding: 15px;
+}
+
+.sensorsItem:hover {
+    box-shadow: 1px 1px 10px black
+}
+
+.wrapperForDevices {
+    display: flex;
+    align-items: center;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.marginForDevices {
+    max-width: 500px;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0 20px;
+}
+
+.buttonDevices {
+    box-sizing: border-box;
+    padding: 12px;
+    border-radius: 20px;
+    margin: 10px 0 0 0;
+}
+
+.inputDevices {
+    max-width: 500px;
+    margin: 15px 0;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.wrapperForGraph {
+    width: fit-content;
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 0 0 40px 0;
+}
+
+.wrapperForTable {
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 20px;
+    margin: 40px auto 0;
+    border-spacing: 12px;
+    background: gray;
+}
+
+.titleTables {
+    padding: 5px;
+    background: #D3D3D3;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.textForTable {
+    border-radius: 5px;
+    padding: 5px;
+    border: 1px solid #d7d3d3;
+    color: #d7d3d3;
+}
+
+.buttonForNavigate {
+    margin: 30px 0 0 0;
+    box-sizing: border-box;
+    padding: 10px 30px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.inputSensors {
+    text-align: center;
+    max-width: 400px;
+    margin: 15px 0 7px;
+    width: 100%;
+    height: 28px;
+    box-sizing: border-box;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.buttonSensors {
+    padding: 5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin: 5px auto 0;
+    max-width: 200px;
+    width: 100%;
+}
+
+.wrapperForSensors{
+    max-width: 1100px;
+    width: 100%;
+    margin: 50px auto 0;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}

@@ -1,34 +1,27 @@
 import {useNavigate, useParams} from "react-router-dom";
 import {useGetSensorsItemQuery} from "../../../../features/authSlice";
 import {useEffect, useState} from "react";
-import {useSelector} from "react-redux";
-import Graph from "./Graph";
+import Graph from "../Graph/Graph";
 import SensorsChange from "./SensorsChange";
+import classes from "../stylesForDetails.module.css";
 
 const SensorsItem = () => {
-    const navigate = useNavigate();
-    const token = useSelector(state => state.reducer.token.token);
 
-    useEffect(() => {
-        if (!token) {
-            navigate('/')
-        }
-
-    }, [token])
 
     const params = useParams();
     const {data, isLoading} = useGetSensorsItemQuery(params);
     const [flag, setFlag] = useState(false);
+    const navigate = useNavigate();
+    const savedToken = localStorage.getItem('rtkToken');
+
+    useEffect(()=>{
+        if (!savedToken) {
+            navigate('/')
+        }
+    },[savedToken])
 
     return (
-        <div style={{
-            maxWidth: '1100px',
-            width: '100%',
-            margin: '50px auto 0',
-            background: 'white',
-            borderRadius: '10px',
-            textAlign: 'center'
-        }}>
+        <div className={classes.wrapperForSensors}>
             {isLoading ? <h1>...Loading</h1>
                 : <>
                     {!flag

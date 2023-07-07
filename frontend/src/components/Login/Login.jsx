@@ -21,6 +21,7 @@ const Login = () => {
         try {
             await addNewPost(dataForm).unwrap().then(response => {
                 dispatch(newToken(response.access_token))
+                localStorage.setItem('rtkToken', response.access_token)
                 response.status ? alert('Пользователь не авторизован')
                     : navigate('/main')
             })
