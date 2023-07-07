@@ -51,8 +51,6 @@ const data = [
 
 const Graph = () => {
 
-    const navigate = useNavigate();
-
     return (
         <div className={classes.wrapperForGraph}>
             <AreaChart width={730} height={250} data={data}
@@ -92,8 +90,6 @@ const Graph = () => {
                 }</tr>
                 </tbody>
             </table>
-            <button onClick={() => navigate('/main')} className={classes.buttonForNavigate}>Назад
-            </button>
         </div>
     );
 };

@@ -1,4 +1,3 @@
-import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useGetDevicesQuery} from "../../features/authSlice";
@@ -20,20 +19,21 @@ const Main = () => {
 
     useEffect(()=>{
         if (!savedToken) {
-            navigate('/')
+            navigate('/login')
         }
     },[savedToken])
 
     const outLogin = () => {
         localStorage.removeItem('rtkToken');
-        navigate('/');
+        navigate('/login');
     }
 
     return (
         <div className={classes.wrapperMain}>
             <div className={classes.positionBlocksForMain}>
                 <div style={{textAlign:'right',margin:'0 0 20px'}}>
-                    <button onClick={outLogin} style={{boxSizing:'border-box',padding:'5px 10px',borderRadius:'10px'}}>Выйти</button>
+                    <button onClick={outLogin}
+                            style={{boxSizing:'border-box',padding:'5px 10px',borderRadius:'10px'}}>Выйти</button>
                 </div>
                 {isLoading
                     ? <h1>...Загрузка</h1>
@@ -45,10 +45,9 @@ const Main = () => {
                                     <Map width={'100%'} defaultState={{ center: [result.latitude,result.longitude], zoom: 9 }}>
                                         <Placemark defaultGeometry={[result.latitude,result.longitude]} />
                                     </Map>
-                                </YMaps>;
+                                </YMaps>
                             </div>))}
                         </div>
-
                     </>}
             </div>
         </div>);

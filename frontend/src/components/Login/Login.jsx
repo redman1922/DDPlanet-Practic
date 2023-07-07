@@ -1,7 +1,5 @@
 import classes from "./Login.module.css";
 import {useState} from "react";
-import {useDispatch} from "react-redux";
-import {newToken} from "../../features/tokenSlice";
 import {useNavigate} from "react-router-dom";
 import {useGetAuthorizationMutation} from "../../features/authSlice";
 
@@ -11,7 +9,6 @@ const Login = () => {
         username: '',
         password: '',
     });
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const [addNewPost, {isLoading}] = useGetAuthorizationMutation();
@@ -20,7 +17,6 @@ const Login = () => {
         e.preventDefault();
         try {
             await addNewPost(dataForm).unwrap().then(response => {
-                dispatch(newToken(response.access_token))
                 localStorage.setItem('rtkToken', response.access_token)
                 response.status ? alert('Пользователь не авторизован')
                     : navigate('/main')

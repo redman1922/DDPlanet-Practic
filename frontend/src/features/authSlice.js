@@ -7,9 +7,8 @@ export const authSlice = createApi({
         baseUrl: 'http://localhost:3001',
         mode: 'cors',
         prepareHeaders: (headers) => {
-            const token = localStorage.getItem('rtkToken');
-            if (token) {
-                headers.set('Authorization', `Bearer ${token}`);
+            if (localStorage.getItem('rtkToken')) {
+                headers.set('Authorization', `Bearer ${localStorage.getItem('rtkToken')}`);
             }
             // If we have a token set in state, let's assume that we should be passing it.
             // headers.set('Authorization', 'Bearer MY_TOKEN');
@@ -26,6 +25,7 @@ export const authSlice = createApi({
                 // Include the entire post object as the body of the request
                 body: initialPost,
             }),
+            invalidatesTags:['Goods','Sensors']
         }),
         getDevices: builder.query({
             query: () => ({

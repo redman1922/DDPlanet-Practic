@@ -16,7 +16,7 @@ const GetDevaices = ({result}) => {
 
     useEffect(()=>{
         if (!savedToken) {
-            navigate('/')
+            navigate('/login')
         }
     },[savedToken])
 
