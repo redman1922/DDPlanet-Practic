@@ -67,7 +67,6 @@ export const authSlice = createApi({
     })
 })
 
-
 export const {
     useGetAuthorizationMutation, useGetDevicesQuery
     , usePutDevicesMutation, useGetSensorsQuery,

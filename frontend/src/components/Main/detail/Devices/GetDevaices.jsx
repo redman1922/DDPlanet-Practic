@@ -52,7 +52,7 @@ const GetDevaices = ({result}) => {
                 </div>
                 <div style={{margin: '0 auto'}}>
                     {data.map((result) => (
-                        <div className={classes.sensorsItem} onClick={() => viewSensorsItem(result.deviceId,result.id)}>
+                        <div key={result.id} className={classes.sensorsItem} onClick={() => viewSensorsItem(result.deviceId,result.id)}>
                             <div>{result.name}</div>
                             <div>{result.comment}</div>
                         </div>

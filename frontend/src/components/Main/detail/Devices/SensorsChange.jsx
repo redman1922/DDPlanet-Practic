@@ -11,10 +11,8 @@ const SensorsChange = ({data, setFlag}) => {
     const [changeSensors,{isLoading}] = useChangeSensorsMutation();
 
     const changeSensorsData = async (e) => {
-        console.log('1')
         e.preventDefault()
         try {
-            console.log(valueForm)
             await changeSensors({id:data.id,valueForm})
             setFlag(false);
         } catch (err) {
