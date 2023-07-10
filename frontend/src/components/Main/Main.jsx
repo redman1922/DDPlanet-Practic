@@ -18,8 +18,6 @@ const Main = () => {
 
     const {
         data: devices = [],
-        isError,
-        isFetching,
         isLoading,
     } = useGetDevicesQuery();
 
@@ -56,7 +54,7 @@ const Main = () => {
                                 </div>
                             ))}
                             <YMaps>
-                                <Map defaultState={{center: [55.831903, 37.411961], zoom: 4}} width={'100%'}>
+                                <Map defaultState={{center: [55.831903, 37.411961], zoom: 3}} width={'100%'}>
                                     {collectGeo.map((result, index) => <Placemark key={index} geometry={result}/>)}
                                 </Map>
                             </YMaps>

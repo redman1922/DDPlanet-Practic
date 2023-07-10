@@ -1,5 +1,4 @@
 import {Area, AreaChart, CartesianGrid, Tooltip, XAxis, YAxis} from "recharts";
-import {useNavigate} from "react-router-dom";
 import classes from "../stylesForDetails.module.css";
 
 const data = [
@@ -80,14 +79,12 @@ const Graph = () => {
                 </thead>
                 <tbody>
                 <tr>
-                {
-                    data.map((item,index) => <td key={index}
-                                           style={{
-
-                                           }}>
-                        <strong>{item.sensors}</strong>
-                    </td>)
-                }</tr>
+                    {
+                        data.map((item, index) => <td key={index}
+                                                      style={{}}>
+                            <strong>{item.sensors}</strong>
+                        </td>)
+                    }</tr>
                 </tbody>
             </table>
         </div>

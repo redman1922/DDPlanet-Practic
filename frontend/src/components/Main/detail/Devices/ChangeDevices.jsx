@@ -25,11 +25,13 @@ const ChangeDevices = ({result, setFlag}) => {
     return (
         <form onSubmit={changeDevicesData}>
             <h3>Имя устройства:</h3>
-            <input className={classes.inputDevices} onChange={e => setChangeDeviesForm({...changeDeviesForm, name: e.target.value})}
+            <input className={classes.inputDevices}
+                   onChange={e => setChangeDeviesForm({...changeDeviesForm, name: e.target.value})}
                    placeholder='Введите имя' value={changeDeviesForm.name}></input>
             <div style={{marginBottom: '15px'}}>
                 <h3 style={{marginBottom: '13px'}}>Комментарий:</h3>
-                <input className={classes.inputDevices} onChange={e => setChangeDeviesForm({...changeDeviesForm, comment: e.target.value})}
+                <input className={classes.inputDevices}
+                       onChange={e => setChangeDeviesForm({...changeDeviesForm, comment: e.target.value})}
                        value={changeDeviesForm.comment} placeholder='Введите комментарий'></input>
             </div>
             <div style={{textAlign: 'right'}}>

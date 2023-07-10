@@ -16,7 +16,7 @@ export const authSlice = createApi({
             return headers;
         },
     }),
-    tagTypes:['Goods','Sensors'],
+    tagTypes:['Devices','Sensors'],
     endpoints: builder => ({
         getAuthorization: builder.mutation({
             query: initialPost => ({
@@ -25,21 +25,21 @@ export const authSlice = createApi({
                 // Include the entire post object as the body of the request
                 body: initialPost,
             }),
-            invalidatesTags:['Goods','Sensors']
+            invalidatesTags:['Devices','Sensors']
         }),
         getDevices: builder.query({
             query: () => ({
                 url: '/devices',
                 method: 'GET',
             }),
-            providesTags:['Goods']
+            providesTags:['Devices']
         }),
         getSensors: builder.query({
             query: (id) => ({
                 url: `/devices/${id}/sensors`,
                 method: 'GET',
             }),
-            providesTags:['Goods','Sensors']
+            providesTags:['Devices','Sensors']
         }),
         getSensorsItem: builder.query({
             query: ({devicesId, id}) => ({
@@ -54,7 +54,7 @@ export const authSlice = createApi({
                 method: 'PUT',
                 body: {...body.changeDeviesForm},
             }),
-            invalidatesTags:['Goods']
+            invalidatesTags:['Devices']
         }),
         changeSensors: builder.mutation({
             query: ({id,...body}) => ({

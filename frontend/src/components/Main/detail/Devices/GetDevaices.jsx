@@ -4,7 +4,7 @@ import {useGetSensorsQuery} from "../../../../features/authSlice";
 import {useNavigate} from "react-router-dom";
 import classes from "../stylesForDetails.module.css";
 
-const GetDevaices = ({result,collectGeoArray}) => {
+const GetDevaices = ({result, collectGeoArray}) => {
 
     const [flag, setFlag] = useState(false);
     const {
@@ -14,18 +14,18 @@ const GetDevaices = ({result,collectGeoArray}) => {
     const navigate = useNavigate();
     const savedToken = localStorage.getItem('rtkToken');
 
-    useEffect(()=>{
+    useEffect(() => {
         if (!savedToken) {
             navigate('/login')
         }
-    },[savedToken]);
+    }, [savedToken]);
 
-    useEffect(()=>{
+    useEffect(() => {
         collectGeoArray(result.latitude, result.longitude)
-    },[result])
+    }, [result])
 
-    const viewSensorsItem = (deviceId,id) => {
-        navigate(`/devices/${deviceId}/sensors/${id}`, )
+    const viewSensorsItem = (deviceId, id) => {
+        navigate(`/devices/${deviceId}/sensors/${id}`,)
     }
 
     return (
@@ -51,7 +51,8 @@ const GetDevaices = ({result,collectGeoArray}) => {
                 </div>
                 <div style={{margin: '0 auto'}}>
                     {data.map((result) => (
-                        <div key={result.id} className={classes.sensorsItem} onClick={() => viewSensorsItem(result.deviceId,result.id)}>
+                        <div key={result.id} className={classes.sensorsItem}
+                             onClick={() => viewSensorsItem(result.deviceId, result.id)}>
                             <div>{result.name}</div>
                             <div>{result.comment}</div>
                         </div>
