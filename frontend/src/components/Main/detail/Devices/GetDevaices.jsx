@@ -4,7 +4,7 @@ import {useGetSensorsQuery} from "../../../../features/authSlice";
 import {useNavigate} from "react-router-dom";
 import classes from "../stylesForDetails.module.css";
 
-const GetDevaices = ({result}) => {
+const GetDevaices = ({result,collectGeoArray}) => {
 
     const [flag, setFlag] = useState(false);
     const {
@@ -18,7 +18,11 @@ const GetDevaices = ({result}) => {
         if (!savedToken) {
             navigate('/login')
         }
-    },[savedToken])
+    },[savedToken]);
+
+    useEffect(()=>{
+        collectGeoArray(result.latitude, result.longitude)
+    },[result])
 
     const viewSensorsItem = (deviceId,id) => {
         navigate(`/devices/${deviceId}/sensors/${id}`, )
