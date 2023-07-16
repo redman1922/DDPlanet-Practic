@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import ChangeDevices from "./ChangeDevices";
-import {useGetSensorsQuery} from "../../../../features/authSlice";
+import {useGetSensorsQuery} from "../../../../features/authSlice.js";
 import {useNavigate} from "react-router-dom";
 import classes from "../stylesForDetails.module.css";
 

@@ -1,14 +1,9 @@
 import {useNavigate} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {useGetDevicesQuery} from "../../features/authSlice";
+import {useGetDevicesQuery} from "../../features/authSlice.js";
 import GetDevaices from "./detail/Devices/GetDevaices";
 import {YMaps, Map, Placemark} from "@pbe/react-yandex-maps";
 import classes from "./Main.module.css";
-
-const geo = [
-    {type: "Point", coordinates: [55.831903, 37.411961]},
-    {type: "Point", coordinates: [54.831903, 37.411961]}
-]
 
 const Main = () => {
 

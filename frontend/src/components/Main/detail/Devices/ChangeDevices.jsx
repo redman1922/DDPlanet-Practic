@@ -1,10 +1,10 @@
 import {useState} from "react";
-import {useChangeDevicesMutation} from "../../../../features/authSlice";
+import {useChangeDevicesMutation} from "../../../../features/authSlice.js";
 import classes from "../stylesForDetails.module.css";
 
 const ChangeDevices = ({result, setFlag}) => {
 
-    const [data, {isLoading}] = useChangeDevicesMutation();
+    const [data] = useChangeDevicesMutation();
 
     const [changeDeviesForm, setChangeDeviesForm] = useState({
         name: result.name,
@@ -22,17 +22,30 @@ const ChangeDevices = ({result, setFlag}) => {
         }
     }
 
+    const handleChangeInput = (e) => {
+        switch (e.target.name) {
+            case 'name':
+                setChangeDeviesForm(prevState => ({...prevState, name: e.target.value}));
+                break;
+            case 'comment':
+                setChangeDeviesForm(prevState => ({...prevState, comment: e.target.value}));
+                break;
+        }
+    }
+
     return (
         <form onSubmit={changeDevicesData}>
             <h3>Имя устройства:</h3>
             <input className={classes.inputDevices}
-                   onChange={e => setChangeDeviesForm({...changeDeviesForm, name: e.target.value})}
-                   placeholder='Введите имя' value={changeDeviesForm.name}></input>
+                   onChange={handleChangeInput}
+                   name='name'
+                   placeholder='Введите имя' value={changeDeviesForm.name}/>
             <div style={{marginBottom: '15px'}}>
                 <h3 style={{marginBottom: '13px'}}>Комментарий:</h3>
                 <input className={classes.inputDevices}
-                       onChange={e => setChangeDeviesForm({...changeDeviesForm, comment: e.target.value})}
-                       value={changeDeviesForm.comment} placeholder='Введите комментарий'></input>
+                       onChange={handleChangeInput}
+                       name='comment'
+                       value={changeDeviesForm.comment} placeholder='Введите комментарий'/>
             </div>
             <div style={{textAlign: 'right'}}>
                 <button className={classes.buttonDevices} type='submit'

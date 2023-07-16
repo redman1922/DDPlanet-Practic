@@ -1,12 +1,11 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {useGetSensorsItemQuery} from "../../../../features/authSlice";
+import {useGetSensorsItemQuery} from "../../../../features/authSlice.js";
 import {useEffect, useState} from "react";
 import Graph from "../Graph/Graph";
-import SensorsChange from "./SensorsChange";
 import classes from "../stylesForDetails.module.css";
+import SensorsChange from "./SensorsChange";
 
 const SensorsItem = () => {
-
 
     const params = useParams();
     const {data, isLoading} = useGetSensorsItemQuery(params);

@@ -1,6 +1,5 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 
-
 export const authSlice = createApi({
     reducerPath: 'auth',
     baseQuery: fetchBaseQuery({
@@ -19,7 +18,7 @@ export const authSlice = createApi({
     tagTypes:['Devices','Sensors'],
     endpoints: builder => ({
         getAuthorization: builder.mutation({
-            query: initialPost => ({
+            query: (initialPost) => ({
                 url: '/auth/login',
                 method: 'POST',
                 // Include the entire post object as the body of the request
