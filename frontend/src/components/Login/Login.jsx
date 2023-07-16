@@ -1,7 +1,7 @@
 import classes from "./Login.module.css";
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {useGetAuthorizationMutation} from "../../features/authSlice";
+import {useGetAuthorizationMutation} from "../../features/authSlice.js";
 
 const Login = () => {
 
@@ -11,7 +11,7 @@ const Login = () => {
     });
     const navigate = useNavigate();
 
-    const [addNewPost, {isLoading}] = useGetAuthorizationMutation();
+    const [addNewPost] = useGetAuthorizationMutation();
 
     const handleButton = async (e) => {
         e.preventDefault();
@@ -31,16 +31,32 @@ const Login = () => {
         })
     }
 
+    const handleChangeInput = (e) => {
+        switch (e.target.name) {
+            case 'login':
+                setDataForm(prevState => ({...prevState, username: e.target.value}));
+                break;
+            case 'password':
+                setDataForm(prevState => ({...prevState, password: e.target.value}));
+                break;
+        }
+    }
+
     return (
         <div className={classes.wrapperLoginPage}>
-            <form onSubmit={handleButton}  className={classes.wrapperLoginForm}>
+            <form onSubmit={handleButton} className={classes.wrapperLoginForm}>
                 <h1 className={classes.loginPageTitle}>Login</h1>
-                <input value={dataForm.username} onChange={(e) => setDataForm({...dataForm, username: e.target.value})}
-                       placeholder={'Login'}
-                       className={classes.loginPageFirstInput}
-                       type="text"/>
-                <input value={dataForm.password} onChange={(e) => setDataForm({...dataForm, password: e.target.value})}
+                <input
+                    value={dataForm.username}
+                    onChange={handleChangeInput}
+                    placeholder={'Login'}
+                    name='login'
+                    className={classes.loginPageFirstInput}
+                    type="text"/>
+                <input value={dataForm.password}
+                       onChange={handleChangeInput}
                        placeholder={'Password'}
+                       name='password'
                        className={classes.loginPageInputPassword} type="password"/>
                 <button type={'submit'} className={classes.loginPageButton}>Отправить</button>
             </form>
